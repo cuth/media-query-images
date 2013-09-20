@@ -1,15 +1,35 @@
 (function (w, $) {
     "use strict";
-    var defaults = {},
-        isRetina = (w.devicePixelRatio > 1),
+    var isRetina = (w.devicePixelRatio > 1),
         mm = w.matchMedia,
+        removeCurrentAttributes = function ($img) {
+            var x,
+                xlen = this.currentAttrs.length;
+            for (x = 0; x < xlen; x += 1) {
+                $img.removeAttr(this.currentAttrs[x]);
+            }
+            this.currentAttr = [];
+        },
+        setAttributes = function ($img, attrs) {
+            if (!attrs) return;
+            for (var attr in attrs) {
+                if (attrs.hasOwnProperty(attr)) {
+                    $img.attr(attr, attrs[attr]);
+                    this.currentAttrs.push(attr);
+                }
+            }
+        },
         setSrc = function (index) {
-            var type;
+            var self = this,
+                type;
             if (index >= this.mqs.length) return false;
-            type = (isRetina) ? this.mqs[index].retinaType : this.mqs[index].type;
+            type = (isRetina) ? this.mqs[index].retinaType || this.mqs[index].type : this.mqs[index].type;
+            if (!type) return false;
             this.$images.each(function () {
                 var $img = $(this);
                 $img.attr('src', $img.attr(type));
+                removeCurrentAttributes.call(self, $img);
+                setAttributes.call(self, $img, self.mqs[index].attr);
             });
             return true;
         },
@@ -36,23 +56,26 @@
                     var mediaQuery = self.mqs[x].mediaQuery;
                     if (!mediaQuery) return;
                     mqls[x] = mm(self.mqs[x].mediaQuery);
-                    mqls[x].addListener(function () {
-                        runCheck.call(self);
-                    });
+                    if (mqls[x].addListener) {
+                        mqls[x].addListener(function () {
+                            runCheck.call(self);
+                        });
+                    }
                 }(x));
             }
             this.mqls = mqls;
+            return true;
         },
-        init = function (images, mqs, options) {
+        init = function (images, mqs) {
             if (!images || !mqs || !mqs.length) return false;
             this.$images = $(images);
             this.mqs = mqs;
-            this.opts = $.extend({}, defaults, options);
+            this.currentAttrs = [];
             createMediaQueryLists.call(this);
             runCheck.call(this);
             return true;
         };
-    w.RIA = function (images, mqs, options) {
-        this.result = init.call(this, images, mqs, options);
+    w.RIA = function (images, mqs) {
+        this.result = init.call(this, images, mqs);
     };
 }(window, jQuery));
