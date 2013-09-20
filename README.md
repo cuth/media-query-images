@@ -46,5 +46,5 @@ Further Reading: [Which responsive images solution should you use?](http://css-t
 
 ### Three options to handle the original source
 1. Leave it blank and add this CSS: `img[src=""] { visibility: hidden; }`
-2. Use this as the initial src: `src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"`
+2. Use this as the initial src: `src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"` - [Base64 Encode of 1x1px Transparent GIF](http://css-tricks.com/snippets/html/base64-encode-of-1x1px-transparent-gif/)
 3. Use the mobile first image as the original image. This may cause two image requests.
