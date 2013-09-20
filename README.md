@@ -26,11 +26,16 @@ Further Reading: [Which responsive images solution should you use?](http://css-t
 
 ### Create a profile object
 
-    var profile1 = new window.RIA('img.profile1', [
+    var profile1 = new RIA('img.profile1', [
         {
             mediaQuery: '(max-width: 600px)',
             type: 'data-src-small',
-            retinaType: 'data-src-medium'
+            retinaType: 'data-src-medium',
+            attrs: {
+                width: 200,
+                height: 100,
+                data-message: 'set custom attributes'
+            }
         },
         {
             mediaQuery: '(max-width: 800px)',
