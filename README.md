@@ -2,13 +2,9 @@
 
 This is an attempt to make images responsive and to only have the user download the image they need.
 
-### Current solutions:
-* [picturefill](https://github.com/scottjehl/picturefill)
-* [Adaptive Images](https://github.com/MattWilcox/Adaptive-Images)
-* [HiSRC](https://github.com/teleject/hisrc)
+Current solutions include: [picturefill](https://github.com/scottjehl/picturefill), [Adaptive Images](https://github.com/MattWilcox/Adaptive-Images), [HiSRC](https://github.com/teleject/hisrc).
 
-### Further Reading:
-* [Which responsive images solution should you use?](http://css-tricks.com/which-responsive-images-solution-should-you-use/)
+Further Reading: [Which responsive images solution should you use?](http://css-tricks.com/which-responsive-images-solution-should-you-use/)
 
 ### Features:
 * Use media queries to assign the image src to other image attributes
@@ -22,7 +18,7 @@ This is an attempt to make images responsive and to only have the user download 
 ### Set up:
 * Use jQuery
 * Optionally add [matchMedia polyfill](https://github.com/paulirish/matchMedia.js/)
-* Add responsive-image-attributes.js
+* Add `responsive-image-attributes.js`
 
 ### Add Custom Image Attributes
 
@@ -30,7 +26,7 @@ This is an attempt to make images responsive and to only have the user download 
 
 ### Create a profile object
 
-    var profile = new window.RIA('img.className', [
+    var profile1 = new window.RIA('img.profile1', [
         {
             mediaQuery: '(max-width: 600px)',
             type: 'data-src-small',
@@ -49,6 +45,6 @@ This is an attempt to make images responsive and to only have the user download 
     ]);
 
 ### Three options to handle the original source
-1. Leave it blank and add this css -- `img[src=""] { visibility: hidden; }`
-2. Use this as the initial src -- `src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"`
+1. Leave it blank and add this CSS: `img[src=""] { visibility: hidden; }`
+2. Use this as the initial src: `src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"`
 3. Use the mobile first image as the original image. This may cause two image requests.
