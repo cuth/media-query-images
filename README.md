@@ -70,4 +70,4 @@ By default, the object in the array is activated if the image width is less than
 3. Use the mobile first image as the original image. This may cause two image requests.
 
 ### Custom Image Attributes Example
-    <img class="profile1" src="" width="200" height="100" alt="responsive image" data-src-medium="img/350x150.gif" data-src-small="img/200x100.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif">
+    <img src="" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif">
