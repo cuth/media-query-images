@@ -1,13 +1,12 @@
 var devicePixelRatio = devicePixelRatio || 1;
 
-// DynamicWidthImgAttrs: Change images based on how wide the image is
 (function (namespace, $) {
     "use strict";
     var defaults = {
             measure: 'width',
             operator: '<=',
             debounceTime: 150,
-            checkOnWindowLoad: false
+            checkOnWinLoad: false
         },
         operators = {
             '<': function (a, b) { return a < b; },
@@ -68,7 +67,7 @@ var devicePixelRatio = devicePixelRatio || 1;
             $w.on('resize', debounce(function () {
                 runCheck.call(self);
             }, this.opts.debounceTime));
-            if (this.opts.checkOnWindowLoad) {
+            if (this.opts.checkOnWinLoad) {
                 $w.on('load', function () {
                     runCheck.call(self);
                 })

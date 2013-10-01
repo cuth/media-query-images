@@ -1,6 +1,5 @@
 var isRetina = (window.devicePixelRatio > 1);
 
-// MediaQueryImgAttrs: Change images based on media queries
 (function (namespace, $) {
     "use strict";
     var removeCurrentAttributes = function ($img) {
