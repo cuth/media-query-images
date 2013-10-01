@@ -58,4 +58,4 @@ var profile3 = new DynamicWidthImgAttrs('.profile3', [
     {
         attrName: 'data-src-xlarge'
     }
-], '<');
+], { debounceTime: 150 });
