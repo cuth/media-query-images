@@ -1,4 +1,4 @@
-window.profile1 = new window.RIA('.profile1', [
+var profile1 = new MediaQueryImgAttrs('.profile1', [
     {
         mediaQuery: '(max-width: 500px)',
         type: 'data-src-small',
@@ -18,7 +18,6 @@ window.profile1 = new window.RIA('.profile1', [
         }
     },
     {
-        mediaQuery: '',
         type: 'data-src-large',
         retinaType: 'data-src-xlarge',
         attr: {
@@ -27,7 +26,7 @@ window.profile1 = new window.RIA('.profile1', [
         }
     }
 ]);
-window.profile2 = new window.RIA('.profile2', [
+var profile2 = new MediaQueryImgAttrs('.profile2', [
     {
         mediaQuery: '(max-width: 600px)',
         type: 'data-src-small',
@@ -39,8 +38,24 @@ window.profile2 = new window.RIA('.profile2', [
         retinaType: 'data-src-large'
     },
     {
-        mediaQuery: '',
         type: 'data-src-large',
         retinaType: 'data-src-xlarge'
     }
 ]);
+var profile3 = new DynamicWidthImgAttrs('.profile3', [
+    {
+        attrName: 'data-src-small',
+        size: 400
+    },
+    {
+        attrName: 'data-src-medium',
+        size: 600
+    },
+    {
+        attrName: 'data-src-large',
+        size: 800
+    },
+    {
+        attrName: 'data-src-xlarge'
+    }
+], '<');
