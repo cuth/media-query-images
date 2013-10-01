@@ -17,10 +17,9 @@ Further Reading: [Which responsive images solution should you use?](http://css-t
 * Optionally add the [matchMedia polyfill](https://github.com/paulirish/matchMedia.js/) for added browser support
 * Add custom src attributes to your image tags.
 * Add `<script src="MediaQueryImgAttrs.js"></script>` before `</body>`
-* Run the constructor `new MediaQueryImgAttrs(selector*, profileObject)`
+* Run the constructor `new MediaQueryImgAttrs(selector*, profileArray)`
 
 #### profileObject
-This is an array of objects. Each object has a `mediaQuery` and `attrName` property.
 | property name  | short description                                                          | type   | required |
 |----------------|----------------------------------------------------------------------------|--------|----------|
 | mediaQuery     | Activating Media Query (leave this blank on the last object in the array)  | string | yes      |
@@ -39,10 +38,9 @@ This is an array of objects. Each object has a `mediaQuery` and `attrName` prope
 * Requires jQuery
 * Add custom src attributes to your image tags.
 * Add `<script src="DynamicWidthImgAttrs.js"></script>` before `</body>`
-* Run the constructor `new DynamicWidthImgAttrs(selector*, profileObject [, options])`
+* Run the constructor `new DynamicWidthImgAttrs(selector*, profileArray [, options])`
 
 #### profileObject
-This is an array of objects. Each object has a `attrName` and `size` property.
 | property name  | short description                                                          | type   | required |
 |----------------|----------------------------------------------------------------------------|--------|----------|
 | attrName       | Name of the attribute when this object is activated                        | string | yes      |
