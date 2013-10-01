@@ -6,7 +6,8 @@ var devicePixelRatio = devicePixelRatio || 1;
     var defaults = {
             measure: 'width',
             operator: '<=',
-            debounceTime: 150
+            debounceTime: 150,
+            checkOnWindowLoad: false
         },
         operators = {
             '<': function (a, b) { return a < b; },
@@ -62,10 +63,16 @@ var devicePixelRatio = devicePixelRatio || 1;
             };
         },
         bindEvents = function () {
-            var self = this;
-            $(window).on('resize', debounce(function () {
+            var self = this,
+                $w = $(window);
+            $w.on('resize', debounce(function () {
                 runCheck.call(self);
             }, this.opts.debounceTime));
+            if (this.opts.checkOnWindowLoad) {
+                $w.on('load', function () {
+                    runCheck.call(self);
+                })
+            }
         },
         init = function (images, set, options) {
             if (!images || !set || !set.length) return false;

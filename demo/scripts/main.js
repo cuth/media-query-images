@@ -1,8 +1,8 @@
 var profile1 = new MediaQueryImgAttrs('.profile1', [
     {
         mediaQuery: '(max-width: 500px)',
-        type: 'data-src-small',
-        retinaType: 'data-src-medium',
+        attrName: 'data-src-small',
+        retinaAttrName: 'data-src-medium',
         attr: {
             width: 200,
             height: 100
@@ -10,16 +10,16 @@ var profile1 = new MediaQueryImgAttrs('.profile1', [
     },
     {
         mediaQuery: '(max-width: 700px)',
-        type: 'data-src-medium',
-        retinaType: 'data-src-large',
+        attrName: 'data-src-medium',
+        retinaAttrName: 'data-src-large',
         attr: {
             width: 350,
             height: 150
         }
     },
     {
-        type: 'data-src-large',
-        retinaType: 'data-src-xlarge',
+        attrName: 'data-src-large',
+        retinaAttrName: 'data-src-xlarge',
         attr: {
             width: 500,
             height: 200
@@ -29,33 +29,33 @@ var profile1 = new MediaQueryImgAttrs('.profile1', [
 var profile2 = new MediaQueryImgAttrs('.profile2', [
     {
         mediaQuery: '(max-width: 600px)',
-        type: 'data-src-small',
-        retinaType: 'data-src-medium'
+        attrName: 'data-src-small',
+        retinaAttrName: 'data-src-medium'
     },
     {
         mediaQuery: '(max-width: 800px)',
-        type: 'data-src-medium',
-        retinaType: 'data-src-large'
+        attrName: 'data-src-medium',
+        retinaAttrName: 'data-src-large'
     },
     {
-        type: 'data-src-large',
-        retinaType: 'data-src-xlarge'
+        attrName: 'data-src-large',
+        retinaAttrName: 'data-src-xlarge'
     }
 ]);
 var profile3 = new DynamicWidthImgAttrs('.profile3', [
     {
         attrName: 'data-src-small',
-        size: 400
+        size: 200
     },
     {
         attrName: 'data-src-medium',
-        size: 600
+        size: 350
     },
     {
         attrName: 'data-src-large',
-        size: 800
+        size: 500
     },
     {
         attrName: 'data-src-xlarge'
     }
-], { debounceTime: 150 });
+], { checkOnWindowLoad: true });

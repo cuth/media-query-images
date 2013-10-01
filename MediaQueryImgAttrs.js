@@ -22,13 +22,13 @@ var isRetina = (window.devicePixelRatio > 1);
         },
         setSrc = function (index) {
             var self = this,
-                type;
+                attrName;
             if (index >= this.mqs.length) return false;
-            type = (isRetina) ? this.mqs[index].retinaType || this.mqs[index].type : this.mqs[index].type;
-            if (!type) return false;
+            attrName = (isRetina) ? this.mqs[index].retinaAttrName || this.mqs[index].attrName : this.mqs[index].attrName;
+            if (!attrName) return false;
             this.$images.each(function () {
                 var $img = $(this);
-                $img.attr('src', $img.attr(type));
+                $img.attr('src', $img.attr(attrName));
                 removeCurrentAttributes.call(self, $img);
                 setAttributes.call(self, $img, self.mqs[index].attr);
             });
