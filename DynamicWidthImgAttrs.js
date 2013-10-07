@@ -15,7 +15,11 @@ var devicePixelRatio = devicePixelRatio || 1;
             '>=': function (a, b) { return a >= b; }
         },
         setSrc = function ($img, attr) {
-            $img.attr('src', $img.attr(attr));
+            if ($img.is('img')) {
+                $img.attr('src', $img.attr(attr));
+            } else {
+                $img.css('background-image', "url('" + $img.attr(attr) + "')");
+            }
         },
         runCheck = function () {
             var self = this,
