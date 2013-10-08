@@ -80,6 +80,7 @@ var devicePixelRatio = devicePixelRatio || 1;
         init = function (images, set, options) {
             if (!images || !set || !set.length) return false;
             this.$images = $(images);
+            if (!this.$images.length) return false;
             this.set = set;
             this.opts = $.extend({}, defaults, options);
             bindEvents.call(this);

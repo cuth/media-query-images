@@ -69,6 +69,7 @@ var isRetina = (window.devicePixelRatio > 1);
         init = function (images, mqs) {
             if (!images || !mqs || !mqs.length) return false;
             this.$images = $(images);
+            if (!this.$images.length) return false;
             this.mqs = mqs;
             this.currentAttrs = [];
             createMediaQueryLists.call(this);
