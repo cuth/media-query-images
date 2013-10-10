@@ -27,9 +27,42 @@ Further Reading: [Which responsive images solution should you use?](http://css-t
 | mediaQuery     | This object becomes active if this media query is true                     | string | yes      |
 | attrName       | Name of the attribute when this object is activated                        | string | yes      |
 | retinaAttrName | Name of the attribute when this object is activated and retina is detected | string | no       |
-| attrs          | Set of attributes that will be applied when this object is activated       | object | no       |
+| attr           | Set of attributes that will be applied when this object is activated       | object | no       |
 
 Leave off the mediaQuery in the last object in the array to create a catch all attribute for the selected images.
+
+### Example
+
+```javascript
+var profile1 = new MediaQueryImgAttrs('.profile1', [
+    {
+        mediaQuery: '(max-width: 500px)',
+        attrName: 'data-src-small',
+        retinaAttrName: 'data-src-medium',
+        attr: {
+            width: 200,
+            height: 100
+        }
+    },
+    {
+        mediaQuery: '(max-width: 700px)',
+        attrName: 'data-src-medium',
+        retinaAttrName: 'data-src-large',
+        attr: {
+            width: 350,
+            height: 150
+        }
+    },
+    {
+        attrName: 'data-src-large',
+        retinaAttrName: 'data-src-xlarge',
+        attr: {
+            width: 500,
+            height: 200
+        }
+    }
+]);
+```
 
 ## DynamicWidthImgAttrs
 
@@ -61,6 +94,28 @@ By default, the object in the array is activated if the image width is less than
 | operator       | Operator to use to compare the image size and size property in the profile | string | '<='     |
 | debounceTime   | Amount of time to wait when resizing the browser before changes take effect| number | 150      |
 | checkOnWinLoad | Option to run the measurement check after the window has loaded            | boolean| false    |
+
+### Example
+
+```javascript
+var profile3 = new DynamicWidthImgAttrs('.profile3', [
+    {
+        attrName: 'data-src-small',
+        size: 200
+    },
+    {
+        attrName: 'data-src-medium',
+        size: 350
+    },
+    {
+        attrName: 'data-src-large',
+        size: 500
+    },
+    {
+        attrName: 'data-src-xlarge'
+    }
+], { checkOnWindowLoad: true });
+```
 
 ## More info on both:
 
