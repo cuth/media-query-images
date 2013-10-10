@@ -27,7 +27,11 @@ var isRetina = (window.devicePixelRatio > 1);
             if (!attrName) return false;
             this.$images.each(function () {
                 var $img = $(this);
-                $img.attr('src', $img.attr(attrName));
+                if ($img.is('img')) {
+                    $img.attr('src', $img.attr(attrName));
+                } else {
+                    $img.css('background-image', "url('" + $img.attr(attrName) + "')");
+                }
                 removeCurrentAttributes.call(self, $img);
                 setAttributes.call(self, $img, self.mqs[index].attr);
             });
