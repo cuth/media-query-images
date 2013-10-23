@@ -4,6 +4,13 @@
         <meta charset="utf-8">
         <title>Responsive Image Attributes Demo</title>
         <link rel="stylesheet" href="css/main.css">
+        <style>
+            .profile4 {
+                height: 200px;
+                background: no-repeat left top;
+                background-size: contain;
+            }
+        </style>
     </head>
     <body>
         <div>
@@ -19,6 +26,7 @@
             <img class="profile3" src="" width="100%" alt="responsive image" data-src-medium="img/350x150.gif" data-src-small="img/200x100.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif">
         </div>
         <div class="profile3" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif" style="height:250px; background-size: contain; background-repeat: no-repeat; background-position: center top"></div>
+        <div class="profile4" data-src-large="img/500x200.gif"></div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="scripts/matchMedia.js"></script>
         <script src="../MediaQueryImgAttrs.js"></script>

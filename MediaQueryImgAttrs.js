@@ -22,7 +22,18 @@ var isRetina = (window.devicePixelRatio > 1);
         setSrc = function (index) {
             var self = this,
                 attrName;
-            if (index >= this.mqs.length) return false;
+            if (index >= this.mqs.length) {
+                this.$images.each(function () {
+                    var $img = $(this);
+                    if ($img.is('img')) {
+                        $img.attr('src', '');
+                    } else {
+                        $img.css('background-image', '');
+                    }
+                    removeCurrentAttributes.call(self, $img);
+                });
+                return false;
+            }
             attrName = (isRetina) ? this.mqs[index].retinaAttrName || this.mqs[index].attrName : this.mqs[index].attrName;
             if (!attrName) return false;
             this.$images.each(function () {
@@ -40,7 +51,7 @@ var isRetina = (window.devicePixelRatio > 1);
         runCheck = function () {
             var x,
                 xlen = this.mqls.length;
-            if (!xlen || !matchMedia) return;
+            if (!matchMedia) return;
             for (x = 0; x < xlen; x += 1) {
                 if (this.mqls[x].matches) {
                     setSrc.call(this, x);

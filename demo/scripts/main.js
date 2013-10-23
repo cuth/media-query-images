@@ -59,3 +59,9 @@ var profile3 = new DynamicWidthImgAttrs('.profile3', [
         attrName: 'data-src-xlarge'
     }
 ], { checkOnWindowLoad: true });
+var profile2 = new MediaQueryImgAttrs('.profile4', [
+    {
+        mediaQuery: '(max-width: 800px)',
+        attrName: 'data-src-large'
+    }
+]);
