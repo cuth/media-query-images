@@ -120,9 +120,9 @@ var profile3 = new DynamicWidthImgAttrs('.profile3', [
 ## More info on both:
 
 ### Three options to handle the original `src` attribute
-1. Leave it blank and add this CSS: `img[src=""] { visibility: hidden; }` (may still cause a request in some browsers)
-2. Use this as the initial src: `src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"` - [Base64 Encode of 1x1px Transparent GIF](http://css-tricks.com/snippets/html/base64-encode-of-1x1px-transparent-gif/)
+1. Leave it blank and add this CSS: `img[src] { visibility: visible; }` (may still cause a request in some browsers)
+2. ~~Use this as the initial src: `src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"` - [Base64 Encode of 1x1px Transparent GIF](http://css-tricks.com/snippets/html/base64-encode-of-1x1px-transparent-gif/)~~ The first option is better since you can just leave off the src attribute and it will not make a request. [source](http://filamentgroup.com/lab/respimg_scripts/)
 3. Use the mobile first image as the original image. This may cause two image requests.
 
 ### Custom Image Attributes Example
-    <img src="" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif">
+    <img alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif">
