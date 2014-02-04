@@ -1,28 +1,8 @@
-var isRetina = (window.devicePixelRatio > 1);
-
-(function (namespace, $) {
+(function (exports, $) {
     "use strict";
-    var defaults = {
+    var isRetina = (window.devicePixelRatio > 1),
+        defaults = {
             blankClass: 'hidden'
-        },
-        removeCurrentAttributes = function (img) {
-            var $img = $(img),
-                x,
-                xlen = this.currentAttrs.length;
-            for (x = 0; x < xlen; x += 1) {
-                $img.removeAttr(this.currentAttrs[x]);
-            }
-            this.currentAttr = [];
-        },
-        setAttributes = function (img, attrs) {
-            var $img = $(img);
-            if (!attrs) return;
-            for (var attr in attrs) {
-                if (attrs.hasOwnProperty(attr)) {
-                    $img.attr(attr, attrs[attr]);
-                    this.currentAttrs.push(attr);
-                }
-            }
         },
         setBlank = function (img) {
             var $img = $(img);
@@ -49,68 +29,56 @@ var isRetina = (window.devicePixelRatio > 1);
         },
         setSrc = function (index) {
             var self = this,
-                attrName;
+                mq, attrName;
+            // if no default was set
             if (index >= this.mqs.length) {
                 this.$images.each(function () {
                     setBlank.call(self, this);
-                    removeCurrentAttributes.call(self, this);
                 });
                 return false;
             }
-            attrName = (isRetina) ? this.mqs[index].retinaAttrName || this.mqs[index].attrName : this.mqs[index].attrName;
+            mq = this.mqs[index];
+            attrName = (isRetina) ? mq.retinaAttrName || mq.attrName : mq.attrName;
             if (!attrName) return false;
             this.$images.each(function () {
                 setImage.call(self, this, attrName);
-                removeCurrentAttributes.call(self, this);
-                setAttributes.call(self, this, self.mqs[index].attr);
             });
-            return true;
         },
         runCheck = function () {
-            var x,
-                xlen = this.mqls.length;
-            if (!xlen || !matchMedia) return;
-            for (x = 0; x < xlen; x += 1) {
+            for (var x = 0, xlen = this.mqls.length; x < xlen; x += 1) {
                 if (this.mqls[x].matches) {
                     setSrc.call(this, x);
-                    return true;
+                    return;
                 }
             }
-            return setSrc.call(this, xlen);
+            setSrc.call(this, xlen);
+        },
+        bindListeners = function () {
+            if (!this.mqls[0].addListener) return;
+            for (var x = 0, xlen = this.mqls.length; x < xlen; x += 1) {
+                this.mqls[x].addListener(runCheck.bind(this));
+            }
         },
         createMediaQueryLists = function () {
-            var self = this,
-                x,
-                xlen = this.mqs.length,
-                mqls = [];
-            if (!xlen || !matchMedia) return false;
-            for (x = 0; x < xlen; x += 1) {
-                (function (index) {
-                    var mediaQuery = self.mqs[x].mediaQuery;
-                    if (!mediaQuery) return;
-                    mqls[x] = matchMedia(self.mqs[x].mediaQuery);
-                    if (mqls[x].addListener) {
-                        mqls[x].addListener(function () {
-                            runCheck.call(self);
-                        });
-                    }
-                }(x));
+            var mqls = [];
+            for (var x = 0, xlen = this.mqs.length; x < xlen; x += 1) {
+                if (!this.mqs[x].mediaQuery) break;
+                mqls[x] = matchMedia(this.mqs[x].mediaQuery);
             }
-            this.mqls = mqls;
-            return true;
+            return mqls;
         },
         init = function (images, mqs, options) {
-            if (!images || !mqs || !mqs.length) return false;
+            if (!images || !mqs || !mqs.length || !matchMedia) return false;
             this.$images = $(images);
             if (!this.$images.length) return false;
             this.mqs = mqs;
             this.opts = $.extend({}, defaults, options);
-            this.currentAttrs = [];
-            createMediaQueryLists.call(this);
+            this.mqls = createMediaQueryLists.call(this);
+            bindListeners.call(this);
             runCheck.call(this);
             return true;
         };
-    namespace.MediaQueryImgAttrs = function (images, mqs, options) {
+    exports.MediaQueryImgAttrs = function (images, mqs, options) {
         this.result = init.call(this, images, mqs, options);
     };
 }(this, jQuery));

@@ -5,32 +5,156 @@
         <title>Responsive Image Attributes Demo</title>
         <link rel="stylesheet" href="css/main.css">
         <style>
-            .profile4 {
+            img {
+                visibility: hidden;
+            }
+            img[src] {
+                visibility: visible;
+            }
+            .hidden {
+                display: none;
+            }
+
+            .example {
+                padding: 20px;
+            }
+            .profile4,
+            .profile5 {
+                height: 200px;
+                background: no-repeat left top;
+                background-size: contain;
+            }
+            .dw1 {
                 height: 200px;
                 background: no-repeat left top;
                 background-size: contain;
             }
         </style>
-    </head>
-    <body>
-        <div>
-            <img class="profile1" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="responsive image" data-src-medium="img/350x150.gif" data-src-small="img/200x100.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif">
-        </div>
-        <div>
-            <img class="profile1" src="" width="200" height="100" alt="responsive image" data-src-medium="img/350x150.gif" data-src-small="img/200x100.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif">
-        </div>
-        <div>
-            <img class="profile2" src="img/200x100.gif" alt="responsive image" data-src-medium="img/350x150.gif" data-src-small="img/200x100.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif">
-        </div>
-        <div style="width: 50%">
-            <img class="profile3" src="" width="100%" alt="responsive image" data-src-medium="img/350x150.gif" data-src-small="img/200x100.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif">
-        </div>
-        <div class="profile3" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif" style="height:250px; background-size: contain; background-repeat: no-repeat; background-position: center top"></div>
-        <div class="profile4" data-src-large="img/500x200.gif"></div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="scripts/matchMedia.js"></script>
         <script src="../MediaQueryImgAttrs.js"></script>
         <script src="../DynamicWidthImgAttrs.js"></script>
-        <script src="scripts/main.js"></script>
+    </head>
+    <body>
+        <h1>Media Query Image Attributres</h1>
+        <div class="example">
+            <p>Example: image element, multiple sizes, last item default</p>
+            <img class="profile1" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif">
+            <script>
+                var profile1 = new MediaQueryImgAttrs('.profile1', [
+                    {
+                        mediaQuery: '(max-width: 500px)',
+                        attrName: 'data-src-small'
+                    },
+                    {
+                        mediaQuery: '(max-width: 700px)',
+                        attrName: 'data-src-medium'
+                    },
+                    {
+                        attrName: 'data-src-large'
+                    }
+                ]);
+            </script>
+        </div>
+        <div class="example">
+            <p>Example: image element, no default, multiple images</p>
+            <img class="profile2" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif"><br />
+            <img class="profile2" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif">
+            <script>
+                var profile2 = new MediaQueryImgAttrs('.profile2', [
+                    {
+                        mediaQuery: '(min-width: 700px)',
+                        attrName: 'data-src-medium'
+                    },
+                    {
+                        mediaQuery: '(min-width: 500px)',
+                        attrName: 'data-src-small'
+                    }
+                ]);
+            </script>
+        </div>
+        <div class="example">
+            <p>Example: Retina</p>
+            <img class="profile3" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif">
+            <script>
+                var profile3 = new MediaQueryImgAttrs('.profile3', [
+                    {
+                        mediaQuery: '(max-width: 600px)',
+                        attrName: 'data-src-small',
+                        retinaAttrName: 'data-src-medium'
+                    },
+                    {
+                        mediaQuery: '(max-width: 800px)',
+                        attrName: 'data-src-medium',
+                        retinaAttrName: 'data-src-large'
+                    },
+                    {
+                        attrName: 'data-src-large',
+                        retinaAttrName: 'data-src-xlarge'
+                    }
+                ]);
+            </script>
+        </div>
+        <div class="example">
+            <p>Example: Div element as background image</p>
+            <div class="profile4" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif"></div>
+            <script>
+                var profile4 = new MediaQueryImgAttrs('.profile4', [
+                    {
+                        mediaQuery: '(min-width: 1000px)',
+                        attrName: 'data-src-large'
+                    },
+                    {
+                        mediaQuery: '(min-width: 700px)',
+                        attrName: 'data-src-medium'
+                    },
+                    {
+                        attrName: 'data-src-small'
+                    }
+                ]);
+            </script>
+        </div>
+        <div class="example">
+            <p>Example: with existing inline styles</p>
+            <div class="profile5" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif" style="background-color: black"></div>
+            <script>
+                var profile5 = new MediaQueryImgAttrs('.profile5', [
+                    {
+                        mediaQuery: '(min-width: 1000px)',
+                        attrName: 'data-src-large'
+                    },
+                    {
+                        mediaQuery: '(min-width: 700px)',
+                        attrName: 'data-src-medium'
+                    },
+                    {
+                        attrName: 'data-src-small'
+                    }
+                ]);
+            </script>
+        </div>
+        <h1>Dynamic Width Image Attributres</h1>
+        <div class="example">
+            <div class="dw1" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif"></div>
+            <script>
+            var profile3 = new DynamicWidthImgAttrs('.dw1', [
+                {
+                    attrName: 'data-src-small',
+                    size: 200
+                },
+                {
+                    attrName: 'data-src-medium',
+                    size: 350
+                },
+                {
+                    attrName: 'data-src-large',
+                    size: 500
+                },
+                {
+                    attrName: 'data-src-xlarge'
+                }
+            ], { checkOnWindowLoad: true });
+            </script>
+        </div>
     </body>
 </html>
