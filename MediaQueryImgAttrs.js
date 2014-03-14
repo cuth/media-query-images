@@ -8,7 +8,7 @@
             var $img = $(img);
             $img.addClass(this.opts.blankClass);
             if ($img.is('img')) {
-                $img.attr('src', '');
+                $img.removeAttr('src');
             } else {
                 $img.css('background-image', '');
             }
