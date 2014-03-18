@@ -2,7 +2,7 @@
  * version: 1.0
  * https://github.com/cuth/responsive-image-attributes
  */
-;(function (namespace, $) {
+;(function (exports, $) {
     "use strict";
     var defaults = {
             measure: 'width',
@@ -90,7 +90,7 @@
             runCheck.call(this);
             return true;
         };
-    namespace.DynamicWidthImgAttrs = function (images, set, options) {
+    exports.DynamicWidthImgAttrs = function (images, set, options) {
         this.result = init.call(this, images, set, options);
     };
 }(this, jQuery));
