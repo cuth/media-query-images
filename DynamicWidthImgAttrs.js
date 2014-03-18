@@ -1,6 +1,8 @@
-var devicePixelRatio = devicePixelRatio || 1;
-
-(function (namespace, $) {
+/* Dynamic Width Image Attributes
+ * version: 1.0
+ * https://github.com/cuth/responsive-image-attributes
+ */
+;(function (namespace, $) {
     "use strict";
     var defaults = {
             measure: 'width',
@@ -8,6 +10,7 @@ var devicePixelRatio = devicePixelRatio || 1;
             debounceTime: 150,
             checkOnWinLoad: false
         },
+        devicePixelRatio = devicePixelRatio || 1,
         operators = {
             '<': function (a, b) { return a < b; },
             '<=': function (a, b) { return a <= b; },

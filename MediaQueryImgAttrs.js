@@ -1,9 +1,13 @@
-(function (exports, $) {
+/* Media Query Image Attributes
+ * version: 1.0
+ * https://github.com/cuth/responsive-image-attributes
+ */
+;(function (exports, $) {
     "use strict";
-    var isRetina = (window.devicePixelRatio > 1),
-        defaults = {
+    var defaults = {
             blankClass: 'hidden'
         },
+        isRetina = (window.devicePixelRatio > 1),
         setBlank = function (img) {
             var $img = $(img);
             $img.addClass(this.opts.blankClass);
