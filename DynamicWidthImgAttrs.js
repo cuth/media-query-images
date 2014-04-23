@@ -1,5 +1,5 @@
 /* Dynamic Width Image Attributes
- * version: 1.0.1
+ * version: 1.0.2
  * https://github.com/cuth/responsive-image-attributes
  */
 ;(function (exports, $) {
@@ -93,4 +93,5 @@
     exports.DynamicWidthImgAttrs = function (images, set, options) {
         this.result = init.call(this, images, set, options);
     };
+    exports.DynamicWidthImgAttrs.runCheck = runCheck;
 }(this, jQuery));
