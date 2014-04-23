@@ -1,9 +1,9 @@
 /* Media Query Image Attributes
- * version: 1.0
+ * version: 1.0.1
  * https://github.com/cuth/responsive-image-attributes
  */
 ;(function (exports, $) {
-    "use strict";
+    'use strict';
     var defaults = {
             blankClass: 'hidden'
         },
@@ -28,7 +28,7 @@
             if ($img.is('img')) {
                 $img.attr('src', path);
             } else {
-                $img.css('background-image', "url('" + path + "')");
+                $img.css('background-image', 'url("' + path + '")');
             }
         },
         setSrc = function (index) {

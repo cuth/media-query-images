@@ -1,9 +1,9 @@
 /* Dynamic Width Image Attributes
- * version: 1.0
+ * version: 1.0.1
  * https://github.com/cuth/responsive-image-attributes
  */
 ;(function (exports, $) {
-    "use strict";
+    'use strict';
     var defaults = {
             measure: 'width',
             operator: '<=',
@@ -21,13 +21,13 @@
             if ($img.is('img')) {
                 $img.attr('src', $img.attr(attr));
             } else {
-                $img.css('background-image', "url('" + $img.attr(attr) + "')");
+                $img.css('background-image', 'url("' + $img.attr(attr) + '")');
             }
         },
         runCheck = function () {
             var self = this,
                 isHeight = (this.opts.measure === 'height');
-            this.$images.each(function (i) {
+            this.$images.each(function () {
                 var $img = $(this),
                     measurement = (isHeight) ? $img.height() : $img.width(),
                     x,
@@ -77,7 +77,7 @@
             if (this.opts.checkOnWinLoad) {
                 $w.on('load', function () {
                     runCheck.call(self);
-                })
+                });
             }
         },
         init = function (images, set, options) {
