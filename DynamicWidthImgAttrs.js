@@ -93,5 +93,5 @@
     exports.DynamicWidthImgAttrs = function (images, set, options) {
         this.result = init.call(this, images, set, options);
     };
-    exports.DynamicWidthImgAttrs.runCheck = runCheck;
+    exports.DynamicWidthImgAttrs.prototype.runCheck = runCheck;
 }(this, jQuery));
