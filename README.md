@@ -1,4 +1,4 @@
-MediaQueryImgAttrs
+Media Query Images
 ==================
 
 Use media queries to assign images from paths in attributes. This requires jQuery and uses matchMedia. Add the [matchMedia polyfill](https://github.com/paulirish/matchMedia.js/) for added browser support. Assign in javascript the attributes that will be used for each media query.
