@@ -1,6 +1,6 @@
-/* Media Query Image Attributes
+/* Media Query Images
  * version: 1.0.1
- * https://github.com/cuth/responsive-image-attributes
+ * https://github.com/cuth/media-query-images
  */
 ;(function (exports, $) {
     'use strict';
@@ -82,7 +82,7 @@
             runCheck.call(this);
             return true;
         };
-    exports.MediaQueryImgAttrs = function (images, mqs, options) {
+    exports.MediaQueryImages = function (images, mqs, options) {
         this.result = init.call(this, images, mqs, options);
     };
 }(this, jQuery));
