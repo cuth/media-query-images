@@ -53,21 +53,23 @@
     };
     
     var setSrc = function (index) {
-        var self = this,
-            mq, attrName;
+        var mq, attrName;
+
         // if no default was set
         if (index >= this.mqs.length) {
-            this.$images.each(function () {
-                setBlank.call(self, this);
-            });
+            this.$images.each(function (i, img) {
+                setBlank.call(this, img);
+            }.bind(this));
             return false;
         }
+
         mq = this.mqs[index];
         attrName = (isRetina) ? mq.retinaAttrName || mq.attrName : mq.attrName;
         if (!attrName) return false;
-        this.$images.each(function () {
-            setImage.call(self, this, attrName);
-        });
+        
+        this.$images.each(function (i, img) {
+            setImage.call(this, img, attrName);
+        }.bind(this));
     };
 
     var runCheck = function () {
@@ -82,18 +84,17 @@
     
     var bindListeners = function () {
         if (!this.mqls[0].addListener) return;
-        for (var x = 0, xlen = this.mqls.length; x < xlen; x += 1) {
-            this.mqls[x].addListener(runCheck.bind(this));
-        }
+        this.mqls.forEach(function (mql) {
+            mql.addListener(runCheck.bind(this));
+        }.bind(this));
     };
     
     var createMediaQueryLists = function () {
-        var mqls = [];
-        for (var x = 0, xlen = this.mqs.length; x < xlen; x += 1) {
-            if (!this.mqs[x].mediaQuery) break;
-            mqls[x] = matchMedia(this.mqs[x].mediaQuery);
-        }
-        return mqls;
+        return this.mqs.filter(function (mq) {
+            return (mq.mediaQuery);
+        }).map(function (mq) {
+            return matchMedia(mq.mediaQuery);
+        });
     };
     
     var init = function (images, mqs, options) {

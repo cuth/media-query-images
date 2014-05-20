@@ -1,7 +1,7 @@
 Media Query Images
 ==================
 
-Use media queries to assign images from paths in attributes. This requires jQuery and uses matchMedia. Add the [matchMedia polyfill](https://github.com/paulirish/matchMedia.js/) for added browser support. Assign in javascript the attributes that will be used for each media query.
+Use media queries to assign images from paths in attributes. This requires jQuery. Assign in javascript the attributes that will be used for each media query.
 
 ```js
 new MediaQueryImages('.selector', [
@@ -24,6 +24,7 @@ new MediaQueryImages('.selector', [
 Public Methods
 --------------
 Call `runCheck` to manually process the elements (this won't be necessary in normal situations).
+
 Call `refresh` to have MediaQueryImages rerun the selector if possible to check if images have been added or removed.
 
 Helpful CSS
@@ -49,9 +50,13 @@ jQuery Plugin
 -------------
 For extra convenience use this as a jQuery plugin.
 ```js
-    var profile = $('.selector').MediaQueryImages([{
-        mediaQuery: '(min-width: 750px)',
-        attrName: 'data-image'
-    }]);
-    profile.refresh();
+var profile = $('.selector').MediaQueryImages([{
+    mediaQuery: '(min-width: 750px)',
+    attrName: 'data-image'
+}]);
+profile.refresh();
 ```
+
+Polyfills
+---------
+For older browser compatibility, polyfills for matchMedia, Array.prototype.forEach, Array.prototype.filter, Array.prototype.map, Function.prototype.bind might be necessary.
