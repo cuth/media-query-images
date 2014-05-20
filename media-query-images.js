@@ -12,7 +12,7 @@
         });
     } else if (typeof exports !== 'undefined') {
         // CommonJS
-        factory(require('jquery'));
+        module.exports = factory(require('jquery'));
     } else {
         // Browser global
         root[name] = factory(root.jQuery || root.Zepto || root.ender || root.$);
@@ -66,7 +66,7 @@
         mq = this.mqs[index];
         attrName = (isRetina) ? mq.retinaAttrName || mq.attrName : mq.attrName;
         if (!attrName) return false;
-        
+
         this.$images.each(function (i, img) {
             setImage.call(this, img, attrName);
         }.bind(this));
