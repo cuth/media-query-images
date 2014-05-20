@@ -30,101 +30,129 @@
     </head>
     <body>
         <h1>Media Query Image Attributres</h1>
+
         <div class="example">
             <p>Example: image element, multiple sizes, last item default</p>
             <img class="profile1" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif">
-            <script>
-                var profile1 = new MediaQueryImages('.profile1', [
-                    {
-                        mediaQuery: '(max-width: 500px)',
-                        attrName: 'data-src-small'
-                    },
-                    {
-                        mediaQuery: '(max-width: 700px)',
-                        attrName: 'data-src-medium'
-                    },
-                    {
-                        attrName: 'data-src-large'
-                    }
-                ]);
-            </script>
         </div>
+        <script>
+            var profile1 = new MediaQueryImages('.profile1', [
+                {
+                    mediaQuery: '(max-width: 500px)',
+                    attrName: 'data-src-small'
+                },
+                {
+                    mediaQuery: '(max-width: 700px)',
+                    attrName: 'data-src-medium'
+                },
+                {
+                    attrName: 'data-src-large'
+                }
+            ]);
+        </script>
+
         <div class="example">
             <p>Example: image element, no default, multiple images</p>
             <img class="profile2" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif"><br />
             <img class="profile2" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif">
-            <script>
-                var profile2 = new MediaQueryImages('.profile2', [
-                    {
-                        mediaQuery: '(min-width: 700px)',
-                        attrName: 'data-src-medium'
-                    },
-                    {
-                        mediaQuery: '(min-width: 500px)',
-                        attrName: 'data-src-small'
-                    }
-                ]);
-            </script>
         </div>
+        <script>
+            var profile2 = new MediaQueryImages('.profile2', [
+                {
+                    mediaQuery: '(min-width: 700px)',
+                    attrName: 'data-src-medium'
+                },
+                {
+                    mediaQuery: '(min-width: 500px)',
+                    attrName: 'data-src-small'
+                }
+            ]);
+        </script>
+
+        <div class="example jQueryExample">
+            <p>Example: jQuery plugin, multiple images, options, use refresh</p>
+            <img class="jQueryProfile" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif"><br />
+            <img class="jQueryProfile" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif">
+        </div>
+        <script>
+            var jQueryProfile = $('.jQueryProfile').MediaQueryImages([
+                {
+                    mediaQuery: '(min-width: 700px)',
+                    attrName: 'data-src-medium'
+                },
+                {
+                    mediaQuery: '(min-width: 500px)',
+                    attrName: 'data-src-small'
+                }
+            ], {
+                blankClass: 'jQuery-hide'
+            });
+            $('.jQueryExample').append('<br /><img class="jQueryProfile" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif">');
+            jQueryProfile.refresh();
+        </script>
+
         <div class="example">
             <p>Example: Retina</p>
             <img class="profile3" alt="" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif" data-src-xlarge="img/600x250.gif">
-            <script>
-                var profile3 = new MediaQueryImages('.profile3', [
-                    {
-                        mediaQuery: '(max-width: 600px)',
-                        attrName: 'data-src-small',
-                        retinaAttrName: 'data-src-medium'
-                    },
-                    {
-                        mediaQuery: '(max-width: 800px)',
-                        attrName: 'data-src-medium',
-                        retinaAttrName: 'data-src-large'
-                    },
-                    {
-                        attrName: 'data-src-large',
-                        retinaAttrName: 'data-src-xlarge'
-                    }
-                ]);
-            </script>
         </div>
+        <script>
+            var profile3 = new MediaQueryImages('.profile3', [
+                {
+                    mediaQuery: '(max-width: 600px)',
+                    attrName: 'data-src-small',
+                    retinaAttrName: 'data-src-medium'
+                },
+                {
+                    mediaQuery: '(max-width: 800px)',
+                    attrName: 'data-src-medium',
+                    retinaAttrName: 'data-src-large'
+                },
+                {
+                    attrName: 'data-src-large',
+                    retinaAttrName: 'data-src-xlarge'
+                }
+            ]);
+        </script>
+
         <div class="example">
             <p>Example: Div element as background image</p>
             <div class="profile4" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif"></div>
-            <script>
-                var profile4 = new MediaQueryImages('.profile4', [
-                    {
-                        mediaQuery: '(min-width: 1000px)',
-                        attrName: 'data-src-large'
-                    },
-                    {
-                        mediaQuery: '(min-width: 700px)',
-                        attrName: 'data-src-medium'
-                    },
-                    {
-                        attrName: 'data-src-small'
-                    }
-                ]);
-            </script>
         </div>
+        <script>
+            var profile4 = new MediaQueryImages('.profile4', [
+                {
+                    mediaQuery: '(min-width: 1000px)',
+                    attrName: 'data-src-large'
+                },
+                {
+                    mediaQuery: '(min-width: 700px)',
+                    attrName: 'data-src-medium'
+                },
+                {
+                    attrName: 'data-src-small'
+                }
+            ]);
+        </script>
+
         <div class="example">
             <p>Example: with existing inline styles</p>
             <div class="profile5" data-src-small="img/200x100.gif" data-src-medium="img/350x150.gif" data-src-large="img/500x200.gif" style="background-color: black"></div>
-            <script>
-                var profile5 = new MediaQueryImages('.profile5', [
-                    {
-                        mediaQuery: '(min-width: 1000px)',
-                        attrName: 'data-src-large'
-                    },
-                    {
-                        mediaQuery: '(min-width: 700px)',
-                        attrName: 'data-src-medium'
-                    },
-                    {
-                        attrName: 'data-src-small'
-                    }
-                ]);
-            </script>
         </div>
+        <script>
+            var profile5 = new MediaQueryImages('.profile5', [
+                {
+                    mediaQuery: '(min-width: 1000px)',
+                    attrName: 'data-src-large'
+                },
+                {
+                    mediaQuery: '(min-width: 700px)',
+                    attrName: 'data-src-medium'
+                },
+                {
+                    attrName: 'data-src-small'
+                }
+            ]);
+        </script>
+
     </body>
 </html>

@@ -21,7 +21,14 @@ new MediaQueryImages('.selector', [
 });
 ```
 
+Public Methods
+--------------
+Call `runCheck` to manually process the elements (this won't be necessary in normal situations).
+Call `refresh` to have MediaQueryImages rerun the selector if possible to check if images have been added or removed.
+
 Helpful CSS
+-----------
+Hide image elements before src is applied.
 ```css
 img {
     visibility: hidden;
@@ -32,4 +39,19 @@ img[src] {
 .hidden {
     display: none;
 }
+```
+
+Universal Module Definition
+---------------------------
+This uses UMD for support in AMD, CommonJS or as a browser global (MediaQueryImages).
+
+jQuery Plugin
+-------------
+For extra convenience use this as a jQuery plugin.
+```js
+    var profile = $('.selector').MediaQueryImages([{
+        mediaQuery: '(min-width: 750px)',
+        attrName: 'data-image'
+    }]);
+    profile.refresh();
 ```

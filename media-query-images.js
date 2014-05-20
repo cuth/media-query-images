@@ -1,8 +1,24 @@
-/* Media Query Images
- * version: 1.0.2
- * https://github.com/cuth/media-query-images
- */
-;(function (exports, $) {
+//     Media Query Images
+//     version: 1.0.2
+//     https://github.com/cuth/media-query-images
+
+(function(name, root, factory) {
+    'use strict';
+
+    if (typeof define === 'function' && define.amd) {
+        // AMD and attach globally
+        define(['jquery'], function ($) {
+            return (root[name] = factory($));
+        });
+    } else if (typeof exports !== 'undefined') {
+        // CommonJS
+        factory(require('jquery'));
+    } else {
+        // Browser global
+        root[name] = factory(root.jQuery || root.Zepto || root.ender || root.$);
+    }
+
+}('MediaQueryImages', this, function ($) {
     'use strict';
 
     var defaults = {
@@ -82,7 +98,12 @@
     
     var init = function (images, mqs, options) {
         if (!images || !mqs || !mqs.length || !matchMedia) return false;
-        this.selector = (typeof images === 'string') ? images : null;
+        this.selector = null;
+        if (typeof images === 'string') {
+            this.selector = images;
+        } else if (typeof images === 'object' && images.selector) {
+            this.selector = images.selector;
+        }
         this.$images = $(images);
         this.mqs = mqs;
         this.opts = $.extend({}, defaults, options);
@@ -92,16 +113,22 @@
         return true;
     };
 
-    exports.MediaQueryImages = function (images, mqs, options) {
+    var MediaQueryImages = function (images, mqs, options) {
         this.result = init.call(this, images, mqs, options);
     };
 
-    exports.MediaQueryImages.prototype.runCheck = runCheck;
+    MediaQueryImages.prototype.runCheck = runCheck;
 
     // refresh the jQuery selector
-    exports.MediaQueryImages.prototype.refresh = function () {
+    MediaQueryImages.prototype.refresh = function () {
         if (!this.selector || !this.result) return;
         this.$images = $(this.selector);
         runCheck.call(this);
     };
-}(this, jQuery));
+
+    $.fn.MediaQueryImages = function (mqs, options) {
+        return new MediaQueryImages(this, mqs, options);
+    };
+
+    return MediaQueryImages;
+}));
