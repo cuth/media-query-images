@@ -42,13 +42,13 @@ img[src] {
 }
 ```
 
-Universal Module Definition
+[UMD](https://github.com/umdjs/umd)
 ---------------------------
-This uses UMD for support in AMD, CommonJS or as a browser global (MediaQueryImages).
+This uses the Universal Module Definition for support in AMD, CommonJS or as a browser global (MediaQueryImages).
 
 jQuery Plugin
 -------------
-For extra convenience use this as a jQuery plugin.
+For extra convenience use this as a jQuery plugin. The plugin method returns a MediaQueryImages instance rather than a jQuery object (chaining is not supported).
 ```js
 var profile = $('.selector').MediaQueryImages([{
     mediaQuery: '(min-width: 750px)',
