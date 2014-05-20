@@ -11,7 +11,7 @@
             return (root[name] = factory($));
         });
     } else if (typeof exports !== 'undefined') {
-        // CommonJS
+        // Node
         module.exports = factory(require('jquery'));
     } else {
         // Browser global
