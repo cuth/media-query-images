@@ -1,0 +1,28 @@
+{
+  "name": "media-query-images",
+  "version": "1.0.2",
+  "description": "Change image src or background image path based on media queries",
+  "main": "dist/media-query-images.common.js",
+  "scripts": {
+    "test": "example/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cuth/media-query-images.git"
+  },
+  "keywords": [
+    "responsive images"
+  ],
+  "author": "Jon Cuthbert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cuth/media-query-images/issues"
+  },
+  "homepage": "https://github.com/cuth/media-query-images",
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-uglify": "^0.3.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-insert": "^0.3.0"
+  }
+}
