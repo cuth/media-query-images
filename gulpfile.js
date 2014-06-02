@@ -8,16 +8,16 @@ var BANNER = "\
  *  version: " + pjson.version + "\n\
  *  " + pjson.homepage + "\n\
  *  @preserve\n\
- */\n";
+ */\n\n";
 
-var AMD_HEAD    = "define(['jquery'], function ($) {\n    'use strict';\n\n";
-var AMD_FOOT    = "\n\n});";
+var AMD_HEAD    = "define(['jquery'], function ($) {\n\n'use strict';\n\n";
+var AMD_FOOT    = "\n\nreturn MediaQueryImages;\n\n});";
 
-var COMMON_HEAD = "module.exports = (function ($) {\n    'use strict';\n\n";
-var COMMON_FOOT = "\n\n}(require('jquery')));";
+var COMMON_HEAD = "'use strict';\n\nvar $ = require('jquery');\n\n";
+var COMMON_FOOT = "\n\nmodule.exports = MediaQueryImages;";
 
-var GLOBAL_HEAD = "\n/*exported MediaQueryImages */\n\nvar MediaQueryImages = (function ($) {\n    'use strict';\n\n";
-var GLOBAL_FOOT = "\n\n}(jQuery || Zepto || ender || $));";
+var GLOBAL_HEAD = "/*exported MediaQueryImages */\n\nvar MediaQueryImages = (function ($) {\n\n'use strict';\n\n";
+var GLOBAL_FOOT = "\n\nreturn MediaQueryImages;\n\n}(jQuery || Zepto || ender || $));";
 
 gulp.task('build-amd', function () {
     gulp.src('src/media-query-images.js')

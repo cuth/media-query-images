@@ -107,5 +107,3 @@ MediaQueryImages.prototype.refresh = function () {
 $.fn.MediaQueryImages = function (mqs, options) {
     return new MediaQueryImages(this, mqs, options);
 };
-
-return MediaQueryImages;
