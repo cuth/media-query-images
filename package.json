@@ -1,6 +1,6 @@
 {
   "name": "media-query-images",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Change image src or background image path based on media queries",
   "main": "dist/media-query-images.common.js",
   "scripts": {

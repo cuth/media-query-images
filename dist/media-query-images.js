@@ -1,5 +1,5 @@
 /*  media-query-images
- *  version: 1.0.2
+ *  version: 1.0.3
  *  https://github.com/cuth/media-query-images
  *  @preserve
  */
