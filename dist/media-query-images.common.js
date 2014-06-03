@@ -3,8 +3,10 @@
  *  https://github.com/cuth/media-query-images
  *  @preserve
  */
-module.exports = (function ($) {
-    'use strict';
+
+'use strict';
+
+var $ = require('jquery');
 
 var defaults = {
     blankClass: 'hidden'
@@ -116,6 +118,4 @@ $.fn.MediaQueryImages = function (mqs, options) {
     return new MediaQueryImages(this, mqs, options);
 };
 
-return MediaQueryImages;
-
-}(require('jquery')));
+module.exports = MediaQueryImages;

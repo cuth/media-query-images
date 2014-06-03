@@ -3,8 +3,10 @@
  *  https://github.com/cuth/media-query-images
  *  @preserve
  */
+
 define(['jquery'], function ($) {
-    'use strict';
+
+'use strict';
 
 var defaults = {
     blankClass: 'hidden'

@@ -7,7 +7,8 @@
 /*exported MediaQueryImages */
 
 var MediaQueryImages = (function ($) {
-    'use strict';
+
+'use strict';
 
 var defaults = {
     blankClass: 'hidden'
